@@ -14,10 +14,21 @@ $client = new CURLRequest(
 );
 
 $response = $client->request('GET', 'localhost:8080', [
-    'user_input' => ['name', 'quantity', 'price']
+    'user_input' => ['order', 'quantity', 'price']
 ]);
 
-$this->input->get(array('name', 'quantity', 'price'));
+$this->input->post(array('order', 'quantity', 'price'));
+
+function post($array)
+ {
+  $curl_handle = curl_init();
+  curl_setopt($curl_handle, CURLOPT_URL, $this->API);
+  curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($curl_handle, CURLOPT_POST, 1);
+  curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $array);
+  $buffer = curl_exec($curl_handle);
+  return $buffer;
+}
 
 class Client extends Controller
 {
