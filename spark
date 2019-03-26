@@ -42,6 +42,10 @@ chdir(FCPATH);
 
 $app = require rtrim($paths->systemDirectory, '/ ') . '/bootstrap.php';
 
+// Location to the Paths config file.
+$pathsPath = 'application/Config/Paths.php'; 
+
+
 // Grab our Console
 $console = new \CodeIgniter\CLI\Console($app);
 
